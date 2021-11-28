@@ -1,8 +1,10 @@
-import 'package:diabetes_app/screen/homePage.dart';
 import 'package:flutter/material.dart';
 
 class HealthSupportServices extends StatelessWidget {
-  const HealthSupportServices({Key? key}) : super(key: key);
+  const HealthSupportServices({Key? key, required this.moveToHomePage})
+      : super(key: key);
+
+  final VoidCallback moveToHomePage;
 
   static const routeName = '/Health-Support';
 
@@ -31,9 +33,7 @@ class HealthSupportServices extends StatelessWidget {
                   top: 40,
                   left: 40,
                   child: InkWell(
-                    onTap: () {
-                      Navigator.of(context).pushNamed(HomePage.routeName);
-                    },
+                    onTap: moveToHomePage,
                     child: Container(
                       decoration: BoxDecoration(color: Colors.amber[200]),
                       height: 50,

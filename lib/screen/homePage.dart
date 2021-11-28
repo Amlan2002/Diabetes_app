@@ -1,9 +1,9 @@
-import 'package:diabetes_app/screen/healthSupportServices.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatelessWidget {
-  const HomePage({Key? key}) : super(key: key);
-
+  const HomePage({Key? key, required this.moveToHealthSupport})
+      : super(key: key);
+  final VoidCallback moveToHealthSupport;
   static const routeName = '/Home-page';
 
   @override
@@ -15,6 +15,9 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       body: Column(
         children: [
+          SizedBox(
+            height: 20,
+          ),
           Container(
             height: deviceHeight * 0.12,
             width: double.infinity,
@@ -53,10 +56,9 @@ class HomePage extends StatelessWidget {
             ),
           ),
           SizedBox(
-            height: 30,
+            height: 20,
           ),
           Container(
-            height: deviceHeight * 0.77,
             child: SingleChildScrollView(
               child: Column(
                 children: [
@@ -181,10 +183,7 @@ class HomePage extends StatelessWidget {
                     height: 30,
                   ),
                   InkWell(
-                    onTap: () {
-                      Navigator.of(context)
-                          .pushNamed(HealthSupportServices.routeName);
-                    },
+                    onTap: moveToHealthSupport,
                     child: Container(
                       height: 120,
                       width: 360,

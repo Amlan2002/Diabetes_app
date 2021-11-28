@@ -1,6 +1,4 @@
 import 'package:diabetes_app/screen/bottomBar.dart';
-import 'package:diabetes_app/screen/healthSupportServices.dart';
-import 'package:diabetes_app/screen/homePage.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -18,10 +16,6 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       home: BottomBar(),
-      routes: {
-        HealthSupportServices.routeName: (context) => HealthSupportServices(),
-        HomePage.routeName: (context) => HomePage(),
-      },
     );
   }
 }

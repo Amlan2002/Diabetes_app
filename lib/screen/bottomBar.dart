@@ -14,15 +14,31 @@ class BottomBar extends StatefulWidget {
 int currenttab = 0;
 
 final PageStorageBucket bucket = PageStorageBucket();
-Widget currentScreen = HomePage();
 
 class _BottomBarState extends State<BottomBar> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: PageStorage(
-        child: currentScreen,
-        bucket: bucket,
+      body: IndexedStack(
+        children: <Widget>[
+          HomePage(
+            moveToHealthSupport: () {
+              setState(() {
+                currenttab = 1;
+              });
+            },
+          ),
+          HealthSupportServices(
+            moveToHomePage: () {
+              setState(() {
+                currenttab = 0;
+              });
+            },
+          ),
+          NursingSupport(),
+          ConsultDoctors()
+        ],
+        index: currenttab,
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       bottomNavigationBar: BottomAppBar(
@@ -37,7 +53,6 @@ class _BottomBarState extends State<BottomBar> {
                 minWidth: 40,
                 onPressed: () {
                   setState(() {
-                    currentScreen = HomePage();
                     currenttab = 0;
                   });
                 },
@@ -61,7 +76,6 @@ class _BottomBarState extends State<BottomBar> {
                 minWidth: 40,
                 onPressed: () {
                   setState(() {
-                    currentScreen = HealthSupportServices();
                     currenttab = 1;
                   });
                 },
@@ -85,7 +99,6 @@ class _BottomBarState extends State<BottomBar> {
                 minWidth: 40,
                 onPressed: () {
                   setState(() {
-                    currentScreen = NursingSupport();
                     currenttab = 2;
                   });
                 },
@@ -109,7 +122,6 @@ class _BottomBarState extends State<BottomBar> {
                 minWidth: 40,
                 onPressed: () {
                   setState(() {
-                    currentScreen = ConsultDoctors();
                     currenttab = 3;
                   });
                 },
