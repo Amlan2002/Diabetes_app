@@ -1,4 +1,6 @@
+import 'package:diabetes_app/service/auth.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key, required this.moveToHealthSupport})
@@ -34,7 +36,7 @@ class HomePage extends StatelessWidget {
                     height: deviceHeight * 0.05,
                     width: 200,
                     child: Text(
-                      "App Name",
+                      "Appke Sath",
                       style:
                           TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
                     ),
@@ -48,7 +50,14 @@ class HomePage extends StatelessWidget {
                     height: 40,
                     width: 40,
                     child: Center(
-                      child: Icon(Icons.menu),
+                      child: IconButton(
+                        icon: Icon(Icons.menu),
+                        onPressed: () {
+                          final auth =
+                              Provider.of<Auth>(context, listen: false);
+                          auth.signOut();
+                        },
+                      ),
                     ),
                   ),
                 ),

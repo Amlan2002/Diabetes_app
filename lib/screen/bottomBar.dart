@@ -2,11 +2,12 @@ import 'package:diabetes_app/screen/consultDoctors.dart';
 import 'package:diabetes_app/screen/healthSupportServices.dart';
 import 'package:diabetes_app/screen/homePage.dart';
 import 'package:diabetes_app/screen/nursingSupport.dart';
+import 'package:diabetes_app/screen/register.dart';
 import 'package:flutter/material.dart';
 
 class BottomBar extends StatefulWidget {
-  const BottomBar({Key? key}) : super(key: key);
-
+  BottomBar({Key? key, required this.newuser}) : super(key: key);
+  final bool newuser;
   @override
   _BottomBarState createState() => _BottomBarState();
 }
@@ -16,6 +17,20 @@ int currenttab = 0;
 final PageStorageBucket bucket = PageStorageBucket();
 
 class _BottomBarState extends State<BottomBar> {
+  @override
+  void initState() {
+    super.initState();
+    if (widget.newuser) {
+      WidgetsBinding.instance!.addPostFrameCallback((_) {
+        Navigator.of(context).push(MaterialPageRoute(
+          builder: (_) {
+            return Resgister(isThirdpartySignup: true);
+          },
+        ));
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
